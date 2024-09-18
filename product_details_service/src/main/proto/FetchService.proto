@@ -1,0 +1,16 @@
+syntax = "proto3";
+package com.pronsky.grpc;
+
+message FetchRequest {
+
+  string id = 1;
+
+}
+
+message FetchResponse {
+  string description = 1;
+}
+
+service FetchService {
+  rpc fetch(FetchRequest) returns (FetchResponse);
+}

@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: product_service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/products
+    username: postgres
+    password: root
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        hbm2ddl:
+          auto: create-drop
+  kafka:
+    bootstrap-servers: kafka-1:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    listener:
+      missing-topics-fatal: false
+
+grpc:
+  server:
+    port: 9090
+server:
+  port: 8081

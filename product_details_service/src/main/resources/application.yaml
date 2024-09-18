@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: product_details_service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/product-details
+    username: postgres
+    password: root
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        hbm2ddl:
+          auto: create-drop
+  kafka:
+    bootstrap-servers: kafka-1:9092
+    consumer:
+      group-id: product-created-events
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+grpc:
+  client:
+    product-service:
+      address: static://product-service:9090
+      negotiation-type: plaintext
+server:
+  port: 8082
